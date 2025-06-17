@@ -7,6 +7,9 @@ set -e
 
 echo "🔧 Starting Linux dependency installation for giga-spatial..."
 
+export DEBIAN_FRONTEND=noninteractive
+export TZ=UTC
+
 # Check if we're running as root, if not use sudo
 SUDO=""
 if [ "$(id -u)" != "0" ]; then
