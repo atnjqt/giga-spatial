@@ -89,25 +89,33 @@ export GDAL_VERSION
 export CPLUS_INCLUDE_PATH=/usr/include/gdal
 export C_INCLUDE_PATH=/usr/include/gdal
 
-# 3. Install numpy first to avoid dependency issues
-echo "🐍 Installing numpy first..."
-python3.10 -m pip install numpy
+# 3. Install core dependencies in the correct order to avoid incompatibilities
+echo "🐍 Installing core dependencies in the right order..."
 
-# 4. Install GDAL Python bindings with matching version
-echo "🐍 Installing GDAL Python bindings (matching system version: $GDAL_VERSION)..."
-python3.10 -m pip install GDAL==$GDAL_VERSION
+# Create a temporary requirements file with adjusted dependencies
+cat > temp_requirements.txt <<EOL
+numpy>=1.24.0,<2.3.0  # Use a compatible numpy version range
+GDAL==$GDAL_VERSION
+rasterio>=1.2.0,<1.4.0  # Use a more flexible version range for rasterio
+shapely>=2.0.0
+geopandas>=1.0.1
+EOL
 
-# 5. Install rasterio with correct version
-echo "🐍 Installing rasterio compatible with GDAL $GDAL_VERSION..."
-python3.10 -m pip install rasterio
-
-# 6. Install shapely and other core geospatial packages
+# Install from the temporary requirements file
 echo "🐍 Installing core geospatial packages..."
-python3.10 -m pip install shapely geopandas
+python3.10 -m pip install -r temp_requirements.txt
 
-# 7. Install giga-spatial
+# 4. Install the remaining dependencies from requirements.txt, excluding what we've already installed
+grep -v -E "numpy|rasterio|GDAL|shapely|geopandas" requirements.txt > remaining_requirements.txt
+echo "🐍 Installing remaining dependencies..."
+python3.10 -m pip install -r remaining_requirements.txt
+
+# 5. Now install giga-spatial with an explicit dependency override
 echo "🐍 Installing giga-spatial..."
-python3.10 -m pip install -e .
+PIP_NO_BUILD_ISOLATION=0 python3.10 -m pip install -e .
+
+# Cleanup temporary files
+rm temp_requirements.txt remaining_requirements.txt
 
 echo "✅ Installation completed successfully!"
 echo "🚀 You can now use giga-spatial on Linux"
