@@ -2,6 +2,8 @@
 
 This example demonstrates how to fetch and process UNHCR refugee/IDP camp geospatial data. This is a demonstration as a new handler implementation for `UNHCRHandler` should be implemeted in the `gigaspatial` package.
 
+See `gigaspatial/handlers/unhcr.py` for the implementation details.
+
 ## Prerequisites
 
 Ensure you have installed the `gigaspatial` package and set up the necessary configuration. Follow the [Installation Guide](../getting-started/installation.md) if you haven't already.
