@@ -91,23 +91,23 @@ export C_INCLUDE_PATH=/usr/include/gdal
 
 # 3. Install numpy first to avoid dependency issues
 echo "🐍 Installing numpy first..."
-pip install numpy
+python3.10 -m pip install numpy
 
 # 4. Install GDAL Python bindings with matching version
 echo "🐍 Installing GDAL Python bindings (matching system version: $GDAL_VERSION)..."
-pip install GDAL==$GDAL_VERSION
+python3.10 -m pip install GDAL==$GDAL_VERSION
 
 # 5. Install rasterio with correct version
 echo "🐍 Installing rasterio compatible with GDAL $GDAL_VERSION..."
-pip install rasterio
+python3.10 -m pip install rasterio
 
 # 6. Install shapely and other core geospatial packages
 echo "🐍 Installing core geospatial packages..."
-pip install shapely geopandas
+python3.10 -m pip install shapely geopandas
 
 # 7. Install giga-spatial
 echo "🐍 Installing giga-spatial..."
-pip install -e .
+python3.10 -m pip install -e .
 
 echo "✅ Installation completed successfully!"
 echo "🚀 You can now use giga-spatial on Linux"
