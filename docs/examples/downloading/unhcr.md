@@ -1,6 +1,6 @@
 # Downloading UNHCR Data
 
-This example demonstrates how to fetch and process UNHCR refugee/IDP camp geospatial data using the `UNHCRHandler` class.
+This example demonstrates how to fetch and process UNHCR refugee/IDP camp geospatial data. This is a demonstration as a new handler implementation for `UNHCRHandler` should be implemeted in the `gigaspatial` package.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ Ensure you have installed the `gigaspatial` package and set up the necessary con
 ## Example Code
 
 ```python
-from gigaspatial.handlers.unhcr import UNHCRConfig, UNHCRHandler
+#from gigaspatial.handlers.unhcr import UNHCRConfig, UNHCRHandler
 
 # Create configuration
 config = {
