@@ -26,6 +26,7 @@ from gigaspatial.handlers.ookla_speedtest import (
     OoklaSpeedtestTileConfig,
     OoklaSpeedtestConfig,
 )
+from gigaspatial.handlers.unhcr import UNHCRConfig, UNHCRHandler, get_unhcr_camps_data
 from gigaspatial.handlers.opencellid import (
     OpenCellIDConfig,
     OpenCellIDDownloader,
